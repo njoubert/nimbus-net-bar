@@ -75,7 +75,10 @@ while !args.isEmpty {
             NSApplication.shared.appearance = NSAppearance(named: .darkAqua)
             let v = ChartView(frame: NSRect(x: 0, y: 0, width: 448, height: ChartView.chartHeight))
             let fake: [NetworkMonitor.Rate] = (0..<52).map { i in
-                NetworkMonitor.Rate(down: Double(i % 9) * 1_400_000 + (i % 4 == 0 ? 6_000_000 : 0), up: Double(i % 5) * 400_000)
+                let burst: Double = i % 4 == 0 ? 6_000_000 : 0
+                let down: Double = Double(i % 9) * 1_400_000 + burst
+                let up: Double = Double(i % 5) * 400_000
+                return NetworkMonitor.Rate(down: down, up: up)
             }
             v.history = { fake }
             v.simulateHover(at: 40)
