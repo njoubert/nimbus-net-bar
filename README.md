@@ -135,8 +135,9 @@ Loopback, AirDrop's `awdl`/`llw`, bridges and the like are never shown.
 * `AppIcon.swift` — the icon, drawn in CoreGraphics: a blue ↑ and a green ↓ over a glowing
   throughput trace. `build.sh` renders it to an `.iconset` → `.icns` when it bundles the app.
 * `LoginItem.swift` — `SMAppService.mainApp`. The app registers *itself*, so `build.sh
-  install` launches the installed copy with `--enable-login-item`, and `uninstall` runs it
-  with `--disable-login-item` before deleting it. A copy dragged in from the disk image
+  install` runs the installed copy with `--enable-login-item` (register, print the state,
+  exit) before launching it, and `uninstall` runs it with `--disable-login-item` before
+  deleting it. A copy dragged in from the disk image
   registers on its first launch from `/Applications` instead; either way a
   `loginItemRegistered` default is set so it happens once and a later "off" is respected.
 * `DMGBackground.swift` — the disk image's background picture, drawn in code like the icon
